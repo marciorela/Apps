@@ -1,0 +1,57 @@
+﻿@model Apps.ViewModels.AppCadVM
+
+@{
+    ViewData["Title"] = "Novo";
+}
+
+<h1>Novo Programa</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Novo">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <textarea asp-for="Descricao" class="form-control"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Versao" class="control-label"></label>
+                <input asp-for="Versao" class="form-control" />
+                <span asp-validation-for="Versao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plataforma" class="control-label"></label>
+                <input asp-for="Plataforma" class="form-control" />
+                <span asp-validation-for="Plataforma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PathExe" class="control-label"></label>
+                <input asp-for="PathExe" class="form-control" />
+                <span asp-validation-for="PathExe" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParamSilentInstall" class="control-label"></label>
+                <input asp-for="ParamSilentInstall" class="form-control" />
+                <span asp-validation-for="ParamSilentInstall" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Voltar</a>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
