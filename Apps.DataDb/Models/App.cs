@@ -28,5 +28,10 @@ namespace Apps.Models
         public string PathImg { get; set; }
 
         public string ParamSilentInstall { get; set; }
+
+        public override string ToString()
+        {
+            return Nome;
+        }
     }
 }

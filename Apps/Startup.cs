@@ -30,7 +30,8 @@ namespace Apps
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<AppDbContext>(c => c.UseMySql(Configuration.GetConnectionString("DbMySql")));
+            //services.AddDbContext<AppDbContext>(c => c.UseMySql(Configuration.GetConnectionString("DbMySql")));
+            services.AddDbContext<AppDbContext>();
 
             // REPOSITORY
             services.AddScoped<UsuarioRepository>();
