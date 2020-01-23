@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Apps.Migrations
+namespace Apps.DataDb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20200118181142_inicial")]

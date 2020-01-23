@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.Repositories
+namespace Apps.DataDb.Repositories
 {
     public interface IRepository
     {

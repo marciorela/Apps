@@ -33,6 +33,7 @@ namespace Apps.ViewModels
         [DisplayName("Parâmetros para instalação silenciosa")]
         public string ParamSilentInstall { get; set; }
 
+        public string Serials { get; set; }
     }
 
     public static class AppModelExtensions
@@ -46,7 +47,8 @@ namespace Apps.ViewModels
                 ParamSilentInstall = data.ParamSilentInstall,
                 PathExe = data.PathExe,
                 Plataforma = data.Plataforma,
-                Versao = data.Versao
+                Versao = data.Versao,
+                Serials = data.Serials
             };
         }
 
@@ -58,6 +60,7 @@ namespace Apps.ViewModels
             model.PathExe = data.PathExe;
             model.Plataforma = data.Plataforma;
             model.Versao = data.Versao;
+            model.Serials = data.Serials;
 
             return model;
         }

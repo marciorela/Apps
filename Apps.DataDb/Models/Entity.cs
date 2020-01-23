@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace Apps.DataDb.Models
         [Required]
         public Guid Id { get; set; }
 
+        [DisplayName("Data Cadastro")]
         [Required]
         public DateTime DataCadastro { get; set; }
 

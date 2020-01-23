@@ -1,5 +1,5 @@
 using Apps.DataDb.Context;
-using Apps.Repositories;
+using Apps.DataDb.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SimpleInjector;

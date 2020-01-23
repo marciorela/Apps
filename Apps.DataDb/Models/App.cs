@@ -18,6 +18,7 @@ namespace Apps.DataDb.Models
         [DisplayName("Descrição")]
         public string Descricao { get; set; }
 
+        [DisplayName("Versão")]
         public string Versao { get; set; }
 
         public string Plataforma { get; set; }
