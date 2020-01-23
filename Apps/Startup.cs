@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Apps.Context;
+using Apps.DataDb.Context;
 using Apps.Repositories;
 using Apps.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -51,7 +51,7 @@ namespace Apps
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment() || true)
             {
                 app.UseDeveloperExceptionPage();
             }

@@ -1,5 +1,5 @@
-﻿using Apps.Context;
-using Apps.Models;
+﻿using Apps.DataDb.Context;
+using Apps.DataDb.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -1,11 +1,11 @@
-﻿using Apps.Models;
+﻿using Apps.DataDb.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
-namespace Apps.Context
+namespace Apps.DataDb.Context
 {
     public class AppDbContext : DbContext
     {

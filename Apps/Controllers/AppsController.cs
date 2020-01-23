@@ -1,4 +1,4 @@
-﻿using Apps.Models;
+﻿using Apps.DataDb.Models;
 using Apps.Repositories;
 using Apps.ViewModels;
 using Microsoft.AspNetCore.Mvc;

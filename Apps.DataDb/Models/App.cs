@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.Models
+namespace Apps.DataDb.Models
 {
     public class App : Entity
     {
