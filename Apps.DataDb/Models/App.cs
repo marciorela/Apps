@@ -29,6 +29,8 @@ namespace Apps.DataDb.Models
 
         public string ParamSilentInstall { get; set; }
 
+        public string Serials { get; set; }
+
         public override string ToString()
         {
             return Nome;
