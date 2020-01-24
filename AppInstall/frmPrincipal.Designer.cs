@@ -125,6 +125,7 @@
             this.label6.Size = new System.Drawing.Size(68, 15);
             this.label6.TabIndex = 0;
             this.label6.Text = "Plataforma";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblDescricao
             // 
@@ -135,6 +136,7 @@
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(248, 148);
             this.lblDescricao.TabIndex = 0;
+            this.lblDescricao.Click += new System.EventHandler(this.lblDescricao_Click);
             // 
             // label7
             // 

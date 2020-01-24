@@ -20,9 +20,9 @@ namespace Apps.Controllers
             this.appsRepo = appsRepo;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string buscar)
         {
-            var apps = await appsRepo.GetAllAsync();
+            var apps = await appsRepo.FindByTextAsync(buscar ?? "");
 
             return View(apps);
         }

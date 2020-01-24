@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Apps.DataDb.Models;
 using Apps.DataDb.Repositories;
@@ -9,21 +13,57 @@ namespace AppInstall
     public partial class FrmPrincipal : Form
     {
         private readonly AppsRepository repoApp;
+        private static readonly HttpClient Client = new HttpClient();
 
-        private void Pesquisa()
+        public FrmPrincipal(AppsRepository repoApp)
+        {
+            InitializeComponent();
+            this.repoApp = repoApp;
+
+            Client.BaseAddress = new Uri("https://localhost:44358/app/");
+            Client.DefaultRequestHeaders.Accept.Clear();
+            Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            Pesquisa();
+            textBox1.Focus();
+        }
+
+        private static async Task<IEnumerable<App>> GetItems(string path)
+        {
+            var response = await Client.GetAsync(path);
+
+            if (!response.IsSuccessStatusCode) return null;
+
+            return await response.Content.ReadAsAsync<List<App>>();
+        }
+
+        private async void Pesquisa()
         {
             listBox1.Items.Clear();
 
-            var list = repoApp.FindByText(textBox1.Text);
-            foreach (var a in list)
+            //                        var list = repoApp.FindByText(textBox1.Text);
+
+            try
             {
-                listBox1.Items.Add(a);
+                var list = await GetItems(textBox1.Text);
+                //                Console.WriteLine("Items read using the web api GET");
+                //                Console.WriteLine(string.Join(string.Empty, items.Aggregate((current, next) => current + ", " + next)));
+
+                foreach (var a in list)
+                {
+                    listBox1.Items.Add(a);
+                }
+            }
+            catch (Exception e)
+            {
+                //                Console.WriteLine(e.Message);
             }
 
             if (listBox1.Items.Count > 0)
             {
                 listBox1.SelectedIndex = 0;
-            } else
+            }
+            else
             {
                 Data2Label(new App());
             }
@@ -45,15 +85,6 @@ namespace AppInstall
             {
                 MessageBox.Show("Não foi possível executar o programa selecionado.");
             }
-        }
-
-        public FrmPrincipal(AppsRepository repoApp)
-        {
-            InitializeComponent();
-            this.repoApp = repoApp;
-
-            Pesquisa();
-            textBox1.Focus();
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -80,8 +111,8 @@ namespace AppInstall
             {
                 listBox1.Items.Add(s);
             }
-            */  
-            
+            */
+
             /*
             var ctx = new AppDbContext();
 
@@ -165,6 +196,16 @@ namespace AppInstall
                     listBox1.SelectedIndex--;
                 }
             }
+        }
+
+        private void lblDescricao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

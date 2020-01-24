@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Apps.DataDb.Context;
+using Apps.DataDb.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +27,17 @@ namespace Apps.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
+
             services.AddControllers();
+
+            //            services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiInfo() { Title = "Apps Api", Version = "v1" }));
+
+            services.AddDbContext<AppDbContext>();
+            services.AddScoped<AppsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +47,9 @@ namespace Apps.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //            app.UseSwagger();
+            //            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
