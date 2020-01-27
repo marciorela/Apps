@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using Apps.Utils;
 
 namespace Apps.DataDb.Context
 {
@@ -28,12 +29,17 @@ namespace Apps.DataDb.Context
         {
             base.OnConfiguring(optionsBuilder);
 
+            optionsBuilder.UseMySql(Config.Read("ConnectionStrings:DbMySql"));
+            
+/*
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");
 
             IConfigurationRoot config = builder.Build();
-            optionsBuilder.UseMySql(config.GetConnectionString("DbMySql"));
+            optionsBuilder.UseMySql(config.GetValue<string>("ConnectionStrings:DbMySql"));
+//            optionsBuilder.UseMySql(config.GetConnectionString("DbMySql"));
+*/
         }
     }
 }

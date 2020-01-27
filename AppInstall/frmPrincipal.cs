@@ -12,14 +12,12 @@ namespace AppInstall
 {
     public partial class FrmPrincipal : Form
     {
-        private readonly AppsRepository repoApp;
         private static readonly HttpClient Client = new HttpClient();
 
-        public FrmPrincipal(AppsRepository repoApp)
+        public FrmPrincipal()
         {
             InitializeComponent();
-            this.repoApp = repoApp;
-
+                        
             Client.BaseAddress = new Uri("https://localhost:44358/app/");
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -56,6 +54,8 @@ namespace AppInstall
             }
             catch (Exception e)
             {
+                MessageBox.Show($"Ocorreu um erro ao tentar acessar o servidor: \n\n" + e.Message);
+
                 //                Console.WriteLine(e.Message);
             }
 

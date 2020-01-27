@@ -13,7 +13,7 @@ namespace AppInstall
 {
     static class Program
     {
-        private static Container container;
+//        private static Container container;
 
         /// <summary>
         ///  The main entry point for the application.
@@ -31,29 +31,26 @@ namespace AppInstall
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Bootstrap();
-            //            Application.Run(new FrmPrincipal());
-            Application.Run(container.GetInstance<FrmPrincipal>());
+            Application.Run(new FrmPrincipal());
+            //Application.Run(container.GetInstance<FrmPrincipal>());
         }
 
         private static void Bootstrap()
         {
+
+            // A INJEÇÃO DE DEPENDÊNCIA FOI RETIRADA PARA UTILIZAÇÃO DA API
+
             // Create the container as usual.
+            /*
             container = new Container();
-
-            //var ctx = new AppDbContext();
-
-            //var repoApp = new AppsRepository(ctx);
-
-            // Register your types, for instance:
-            //container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Singleton);
-            //container.Register<IUserContext, WinFormsUserContext>();
-            //container.Register<Form1>();
 
             container.Register<AppDbContext>(Lifestyle.Singleton);
             container.Register<AppsRepository>();
 
             // Optionally verify the container.
             container.Verify();
+*/
+
         }
     }
 }

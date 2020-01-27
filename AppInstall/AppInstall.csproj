@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Apps.DataDb\Apps.DataDb.csproj" />
+    <ProjectReference Include="..\Apps.Utils\Apps.Utils.csproj" />
   </ItemGroup>
 
 </Project>
