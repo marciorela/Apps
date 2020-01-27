@@ -1,5 +1,5 @@
 ﻿using Apps.DataDb.Models;
-using Apps.Helpers;
+using Apps.Utils.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.ViewModels
+namespace Apps.DataDb.ViewModels
 {
     public class UsuarioCadVM
     {

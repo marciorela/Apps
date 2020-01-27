@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.ViewModels
+namespace Apps.DataDb.ViewModels
 {
     public class AppCadVM
     {
@@ -34,6 +34,9 @@ namespace Apps.ViewModels
         public string ParamSilentInstall { get; set; }
 
         public string Serials { get; set; }
+
+        [DisplayName("Categoria")]
+        public Guid CategoriaId { get; set; }
     }
 
     public static class AppModelExtensions
@@ -48,7 +51,8 @@ namespace Apps.ViewModels
                 PathExe = data.PathExe,
                 Plataforma = data.Plataforma,
                 Versao = data.Versao,
-                Serials = data.Serials
+                Serials = data.Serials,
+                CategoriaId = data.Categoria.Id
             };
         }
 
@@ -61,6 +65,7 @@ namespace Apps.ViewModels
             model.Plataforma = data.Plataforma;
             model.Versao = data.Versao;
             model.Serials = data.Serials;
+            model.CategoriaId = data.CategoriaId;
 
             return model;
         }

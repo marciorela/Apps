@@ -27,7 +27,7 @@ namespace Apps.DataDb.Repositories
 
         public async Task<IEnumerable<App>> FindByTextAsync(string text)
         {
-            return await ctx.Apps.Where(a => a.Nome.ToLower().Contains(text)).ToListAsync();
+            return await ctx.Apps.Include(c => c.Categoria).Where(a => a.Nome.ToLower().Contains(text)).ToListAsync();
         }
 
         public IEnumerable<App> FindByText(string text)

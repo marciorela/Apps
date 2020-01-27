@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Apps.DataDb.Context;
 using Apps.DataDb.Repositories;
-using Apps.ViewModels;
+using Apps.DataDb.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +35,7 @@ namespace Apps
 
             // REPOSITORY
             services.AddScoped<UsuarioRepository>();
+            services.AddScoped<CategoriaRepository>();
             services.AddScoped<AppsRepository>();
 
             // VIEWMODEL

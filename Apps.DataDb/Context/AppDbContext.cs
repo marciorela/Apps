@@ -12,6 +12,7 @@ namespace Apps.DataDb.Context
         //private readonly IConfiguration configuration;
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
         public DbSet<App> Apps { get; set; }
 
         //public AppDbContext([NotNullAttribute] DbContextOptions options) : base(options)

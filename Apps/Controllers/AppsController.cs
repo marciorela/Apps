@@ -1,8 +1,9 @@
 ﻿using Apps.DataDb.Models;
 using Apps.DataDb.Repositories;
-using Apps.ViewModels;
+using Apps.DataDb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,18 @@ namespace Apps.Controllers
     public class AppsController : Controller
     {
         private readonly AppsRepository appsRepo;
+        private readonly CategoriaRepository repoCategoria;
 
-        public AppsController(AppsRepository appsRepo)
+        public AppsController(AppsRepository appsRepo, CategoriaRepository repoCategoria)
         {
             this.appsRepo = appsRepo;
+            this.repoCategoria = repoCategoria;
+        }
+
+        public async Task GetCategoriasInViewBag()
+        {
+            var categorias = await repoCategoria.GetAllAsync();
+            ViewBag.Categorias = categorias.Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Nome });
         }
 
         public async Task<IActionResult> Index(string buscar)
@@ -28,7 +37,11 @@ namespace Apps.Controllers
         }
 
         [HttpGet]
-        public IActionResult Novo() => View();
+        public async Task<IActionResult> Novo()
+        {
+            await GetCategoriasInViewBag();
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Novo(AppCadVM dados)

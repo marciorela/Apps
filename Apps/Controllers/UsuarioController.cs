@@ -1,6 +1,6 @@
 ﻿using Apps.DataDb.Models;
 using Apps.DataDb.Repositories;
-using Apps.ViewModels;
+using Apps.DataDb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Apps.Helpers
+namespace Apps.Utils.Helpers
 {
     public static class StringHelpers
     {
