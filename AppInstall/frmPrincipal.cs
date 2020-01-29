@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Apps.DataDb.Models;
 using Apps.DataDb.Repositories;
+using Apps.Utils;
 
 namespace AppInstall
 {
@@ -17,8 +18,8 @@ namespace AppInstall
         public FrmPrincipal()
         {
             InitializeComponent();
-                        
-            Client.BaseAddress = new Uri("https://localhost:44358/app/");
+                       
+            Client.BaseAddress = new Uri(Config.UrlApi());
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

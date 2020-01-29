@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Configuration;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System;
@@ -25,5 +24,16 @@ namespace Apps.Utils
             return config.GetValue<string>(Key);
         }
 
+        public static string UrlApi()
+        {
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                return "https://localhost:44358/app/";
+            } else
+            {
+                return "http://192.168.1.51:8088/appapi/app/";
+            }
+                        
+        }
     }
 }

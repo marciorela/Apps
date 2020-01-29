@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "AppInstall": {
+      "commandName": "Project"
+    }
+  }
+}
