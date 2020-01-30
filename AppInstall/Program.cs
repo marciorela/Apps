@@ -46,6 +46,7 @@ namespace AppInstall
 
             container.Register<AppDbContext>(Lifestyle.Singleton);
             container.Register<AppsRepository>();
+            container.Register<FrmPrincipal>();
 
             // Optionally verify the container.
             container.Verify();
