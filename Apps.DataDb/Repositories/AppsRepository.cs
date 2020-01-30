@@ -34,5 +34,10 @@ namespace Apps.DataDb.Repositories
         {
             return Task.Run(async () => await FindByTextAsync(text)).Result;
         }
+
+        public async Task<App> GetByIdAsync(Guid id)
+        {
+            return await ctx.Apps.Include(c => c.Categoria).Where(a => a.Id == id).FirstAsync();
+        }
     }
 }

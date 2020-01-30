@@ -11,5 +11,6 @@ namespace Apps.DataDb.Repositories
     {
         public Task SaveChangesAsync();
         public void Add(Entity entity);
+        public void Update(Entity entity);
     }
 }

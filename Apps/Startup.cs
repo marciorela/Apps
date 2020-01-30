@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Apps.DataDb.Context;
 using Apps.DataDb.Repositories;
 using Apps.DataDb.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -52,7 +46,7 @@ namespace Apps
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment() || true)
+            if (env.IsDevelopment() || true) // FORÇA A ENTRADA SEMPRE PARA A PÁGINA DE ERROS DE DESENVOLVIMENTO
             {
                 app.UseDeveloperExceptionPage();
             }

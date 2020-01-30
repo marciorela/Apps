@@ -14,16 +14,16 @@ namespace Apps.Controllers
 {
     public class AppsController : Controller
     {
-        private readonly AppsRepository appsRepo;
+        private readonly AppsRepository repoApps;
         private readonly CategoriaRepository repoCategoria;
 
         public AppsController(AppsRepository appsRepo, CategoriaRepository repoCategoria)
         {
-            this.appsRepo = appsRepo;
+            this.repoApps = appsRepo;
             this.repoCategoria = repoCategoria;
         }
 
-        public async Task GetCategoriasInViewBag()
+        public async Task GetCategoriasInViewBagAsync()
         {
             var categorias = await repoCategoria.GetAllAsync();
             ViewBag.Categorias = categorias.Select(c => new SelectListItem() { Value = c.Id.ToString(), Text = c.Nome });
@@ -31,7 +31,7 @@ namespace Apps.Controllers
 
         public async Task<IActionResult> Index(string buscar)
         {
-            var apps = await appsRepo.FindByTextAsync(buscar ?? "");
+            var apps = await repoApps.FindByTextAsync(buscar ?? "");
 
             return View(apps);
         }
@@ -39,12 +39,17 @@ namespace Apps.Controllers
         [HttpGet]
         public async Task<IActionResult> Novo()
         {
-            await GetCategoriasInViewBag();
+            await GetCategoriasInViewBagAsync();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Novo(AppCadVM dados)
+        {
+            return await CheckAndSaveAppCadVM(dados, null);
+        }
+
+        public async Task<IActionResult> CheckAndSaveAppCadVM(AppCadVM dados, Guid? id)
         {
             if (!ModelState.IsValid)
             {
@@ -52,12 +57,60 @@ namespace Apps.Controllers
             }
 
             var app = new App();
-            dados.ToModel(app);
+            if (id != null)
+            {
+                app = await repoApps.GetByIdAsync((Guid)id);
+                dados.ToModel(app);
+                repoApps.Update(app);
+            }
+            else
+            {
+                dados.ToModel(app);
+                repoApps.Add(app);
+            }
 
-            appsRepo.Add(app);
-            await appsRepo.SaveChangesAsync();
+            await repoApps.SaveChangesAsync();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var dados = await repoApps.GetByIdAsync(id);
+            if (dados == null)
+            {
+                return BadRequest();
+            }
+
+            await GetCategoriasInViewBagAsync();
+
+            return View(dados.ToVM());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Guid id, AppCadVM dados)
+        {
+            return await CheckAndSaveAppCadVM(dados, id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var dados = await repoApps.GetByIdAsync(id);
+            if (dados == null)
+            {
+                return BadRequest();
+            }
+
+            var dadosVM = dados.ToVM();
+            dadosVM.CategoriaNome = dados.Categoria.Nome;
+            return View(dadosVM);
         }
     }
 }

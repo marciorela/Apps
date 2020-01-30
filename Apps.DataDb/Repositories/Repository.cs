@@ -32,5 +32,10 @@ namespace Apps.DataDb.Repositories
         {
             await ctx.SaveChangesAsync();
         }
+
+        public void Update(Entity entity)
+        {
+            ctx.Update(entity);
+        }
     }
 }

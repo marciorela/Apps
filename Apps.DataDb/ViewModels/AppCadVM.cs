@@ -37,6 +37,8 @@ namespace Apps.DataDb.ViewModels
 
         [DisplayName("Categoria")]
         public Guid CategoriaId { get; set; }
+
+        public string CategoriaNome { get; set; }
     }
 
     public static class AppModelExtensions
@@ -52,7 +54,7 @@ namespace Apps.DataDb.ViewModels
                 Plataforma = data.Plataforma,
                 Versao = data.Versao,
                 Serials = data.Serials,
-                CategoriaId = data.Categoria.Id
+                CategoriaId = data.CategoriaId
             };
         }
 
