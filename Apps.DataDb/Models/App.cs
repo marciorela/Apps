@@ -39,7 +39,7 @@ namespace Apps.DataDb.Models
 
         public override string ToString()
         {
-            return Nome;
+            return $"{Nome} ({Versao})";
         }
     }
 }

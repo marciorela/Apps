@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace Apps.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    //    [Route("api/v1/[controller]")]
+    //[Route("[controller]")]
+    [Route("v1")]
     public class AppController : ControllerBase
     {
         private readonly AppsRepository repoApp;
@@ -20,16 +20,42 @@ namespace Apps.Api.Controllers
             this.repoApp = repoApp;
         }
 
-        [HttpGet("{buscar}")]
+        [HttpGet("search/{buscar}")]
         public async Task<IEnumerable<App>> Get(string buscar)
         {
             return await repoApp.FindByTextAsync(buscar);
         }
 
-        [HttpGet()]
+        [HttpGet("search")]
         public async Task<IEnumerable<App>> Get()
         {
             return await repoApp.FindByTextAsync("");
         }
+
+        [HttpGet("outro")]
+        public Outro uuu()
+        {
+            return new Outro { Id = "345", Nome = "Rela" };
+        }
+
+        [HttpPost("pst")]
+        public string pst(Outro outro)
+        {
+            if (outro == null)
+            {
+                return "NULO";
+            } 
+            else
+            {
+                return "RETORNADO: " + outro.Nome;
+            }
+        }
+    }
+
+    public class Outro
+    {
+        public string Id { get; set; }
+        public string Nome { get; set; }
+
     }
 }

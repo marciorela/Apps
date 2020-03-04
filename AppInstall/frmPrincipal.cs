@@ -23,13 +23,13 @@ namespace AppInstall
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            Pesquisa();
+            //Pesquisa();
             textBox1.Focus();
         }
 
         private static async Task<IEnumerable<App>> GetItems(string path)
         {
-            var response = await Client.GetAsync(path);
+            var response = await Client.GetAsync("/v1/search/" + path);
 
             if (!response.IsSuccessStatusCode) return null;
 
