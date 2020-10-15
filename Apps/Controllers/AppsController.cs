@@ -4,6 +4,7 @@ using Apps.DataDb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +17,13 @@ namespace Apps.Controllers
     {
         private readonly AppsRepository repoApps;
         private readonly CategoriaRepository repoCategoria;
+        private readonly ILogger<AppsController> logger;
 
-        public AppsController(AppsRepository appsRepo, CategoriaRepository repoCategoria)
+        public AppsController(AppsRepository appsRepo, CategoriaRepository repoCategoria, ILogger<AppsController> logger)
         {
             this.repoApps = appsRepo;
             this.repoCategoria = repoCategoria;
+            this.logger = logger;
         }
 
         public async Task GetCategoriasInViewBagAsync()
@@ -32,6 +35,10 @@ namespace Apps.Controllers
         public async Task<IActionResult> Index(string buscar)
         {
             var apps = await repoApps.FindByTextAsync(buscar ?? "");
+
+            logger.LogInformation("Logando a informação");
+            logger.LogWarning("Logando a informação");
+            logger.LogVerbose("Teste verbose");
 
             return View(apps);
         }
